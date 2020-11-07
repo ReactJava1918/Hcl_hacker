@@ -1,5 +1,7 @@
 package com.orderitem.demo.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,8 +54,12 @@ public class Custmoersave_data_saving_controller {
  
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/savingcustomerplanand number")
-	public String postorderservice(@RequestBody CPlanNumber data1) {
-
+	public String postorderservice(@RequestBody CPlanNumber data1,HttpSession session) {
+		//getting custmer id from seesion
+		Integer custmer_id=(Integer)session.getAttribute("userid");
+		//mapping custmerid with cplan number
+		data1.setCustid(custmer_id);
+		//saving c paln data
 		CPlanNumber response = cplanrepo.save(data1);
 
 		//ResponseEntity<CPlanNumber> a = new ResponseEntity<CPlanNumber>(response, HttpStatus.CREATED);
