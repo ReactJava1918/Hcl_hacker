@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.orderitem.demo.custom_Exception.PanNumberRequiredException;
 import com.orderitem.demo.custom_Exception.ProductNotfoundException;
 import com.orderitem.demo.errormodel.ApiError;
 
@@ -23,39 +24,16 @@ import com.orderitem.demo.errormodel.ApiError;
 public class ApiErrorHandler    {
 	
 	
-	 // @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	  @ExceptionHandler(MethodArgumentNotValidException.class)
-	  public ResponseEntity<List<ApiError > > handleValidationExceptions(
-	    MethodArgumentNotValidException ex) {
-		//  System.out.println("control coming to here............");
-		  List<ApiError> apierror=new ArrayList<ApiError>();
-		  
-	    //  Map<String, String> errors = new HashMap<String, String>();
-	      ex.getBindingResult().getAllErrors().forEach((error) -> {
-	    	  ApiError a1 =new ApiError();
-	          String fieldName = ((FieldError) error).getField();
-	          String errorMessage = error.getDefaultMessage();
-	          a1.setFeildname(fieldName);
-	          a1.setErrormessage(errorMessage);
-	          a1.setStatuscode(500);
-	          apierror.add(a1);
-	        //  errors.put(fieldName, errorMessage);
-	      });
-	      
-	      ResponseEntity<List<ApiError > > errors=new  ResponseEntity<List<ApiError > >(apierror,HttpStatus.ACCEPTED);
-	      return errors;
-	  }
-	  
 	  
 	  
 	  //ProductNotfoundException();
 	  
 	  
 	 // @ResponseStatus(HttpStatus.NOT_FOUND)
-	  @ExceptionHandler(ProductNotfoundException.class)
+	  @ExceptionHandler(PanNumberRequiredException.class)
 	  public ResponseEntity<String> productnotfound(){
 	     
-		  ResponseEntity<String> resp2=new ResponseEntity<String>("product you are searching  is not avialble",HttpStatus.ACCEPTED);
+		  ResponseEntity<String> resp2=new ResponseEntity<String>("PAN Number IS MUST!!!!",HttpStatus.INTERNAL_SERVER_ERROR);
 	       
 	        //  errors.put("message","product you are searching  is not avialble");
 	       

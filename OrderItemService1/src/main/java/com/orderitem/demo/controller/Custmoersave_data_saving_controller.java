@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.orderitem.demo.custom_Exception.PanNumberRequiredException;
 import com.orderitem.demo.model.CPlanNumber;
 import com.orderitem.demo.model.CustmoerData;
 import com.orderitem.demo.repo.CPlanNumberRepo;
 import com.orderitem.demo.repo.CustmerSaveDataRepo;
 import com.orderitem.demo.validator.Custmerdata_validation;
-
+ /*@author siva reddy
+  07-11-2020
+ 
+  */
 @RestController
 public class Custmoersave_data_saving_controller {
 	 
@@ -44,6 +48,12 @@ public class Custmoersave_data_saving_controller {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/savecustomer")
 	public ResponseEntity<CustmoerData> postorderservice(@RequestBody CustmoerData data1) {
+		
+		if(data1.getCust_pan()==null)
+		{
+			throw  new PanNumberRequiredException();
+			
+		}
 
 		CustmoerData response = custmersave.save(data1);
 
