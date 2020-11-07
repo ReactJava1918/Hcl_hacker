@@ -11,7 +11,7 @@ import com.orderitem.demo.model.CustmoerData;
  * To save data of customer
  */
 
-import com.orderitem.demo.model.OrderItem;
+ 
 @Repository
 public interface CustmerSaveDataRepo extends JpaRepository<CustmoerData,Integer> {
 	

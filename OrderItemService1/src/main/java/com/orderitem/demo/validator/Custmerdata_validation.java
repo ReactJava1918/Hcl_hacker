@@ -9,9 +9,9 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.orderitem.demo.model.CustmoerData;
-import com.orderitem.demo.model.OrderItem;
+
 import com.orderitem.demo.repo.CustmerSaveDataRepo;
-import com.orderitem.demo.repo.OrderItemRepo;
+
 
 
 
@@ -22,8 +22,7 @@ import com.orderitem.demo.repo.OrderItemRepo;
 public class Custmerdata_validation implements Validator {
 	
 
-	@Autowired
-	private OrderItemRepo orderitemrepo;
+	 
 	
 	
 	
