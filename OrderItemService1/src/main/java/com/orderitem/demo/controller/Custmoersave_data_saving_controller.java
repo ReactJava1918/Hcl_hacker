@@ -53,7 +53,7 @@ public class Custmoersave_data_saving_controller {
 	}
  
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/savingcustomerplanand number")
+	@RequestMapping(method = RequestMethod.POST, value = "/savingcustomerplanandnumber")
 	public String postorderservice(@RequestBody CPlanNumber data1,HttpSession session) {
 		//getting custmer id from seesion
 		Integer custmer_id=(Integer)session.getAttribute("userid");
